@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        SONAR_PROJECT_KEY = 'my_organization:my_project:1.0'  // Replace with your actual project key
+        SONAR_PROJECT_KEY = 'Devops:Backend:1.0'  // Replace with your actual project key
     }
 
     stages {
@@ -16,7 +16,7 @@ pipeline {
             }
         }
 
-        stage('Tests et SonarQube Analysis') {
+        stage('Tests and SonarQube Analysis') {
             steps {
                 // Exécution des tests avec Maven
                 sh 'mvn test'
