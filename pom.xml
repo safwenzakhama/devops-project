@@ -52,7 +52,17 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
     </dependencies>
-
+    <distributionManagement>
+        <repository>
+            <id>nexus-releases</id>
+            <url>http://your-nexus-server/nexus/repository/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <url>http://your-nexus-server/nexus/repository/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+         
     <build>
         <plugins>
             <plugin>
