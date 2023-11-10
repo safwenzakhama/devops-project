@@ -20,10 +20,9 @@ pipeline {
 
                 // Lancement de l'analyse SonarQube
                 script {
-                    def scannerHome = tool 'SonarQubeScanner'
-                    withSonarQubeEnv('sq1') {
-                        sh "${scannerHome}/bin/sonar-scanner"
-                    }
+                     withSonarQubeEnv('sq1') {
+                    sh 'SonarQubeScanner/bin/sonar-scanner'
+                }
                 }
             }
         }
