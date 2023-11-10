@@ -15,14 +15,15 @@ pipeline {
         }
         stage('Tests et SonarQube Analysis') {
             steps {
-                // Exécution des tests avec Maven
+               // Exécution des tests avec Maven
                 sh 'mvn test'
 
                 // Lancement de l'analyse SonarQube
                 script {
-                     withSonarQubeEnv('sq1') {
-                    sh 'SonarQubeScanner/bin/sonar-scanner'
-                }
+                    def scannerHome = tool 'SonarQubeScanner'
+                    withSonarQubeEnv('sq1') {
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
                 }
             }
         }
