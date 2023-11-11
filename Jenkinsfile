@@ -23,7 +23,7 @@ pipeline {
         stage('Clean and Build with Maven') {
             steps {
                 // Nettoyage du projet avec Maven
-                sh 'mvn clean'
+                sh 'mvn clean package'
                 
                 // Compilation du projet avec Maven
                 sh 'mvn compile'
