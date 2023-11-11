@@ -20,6 +20,13 @@ pipeline {
     }
 
     stages {
+        stage('JUnit Tests') {
+            steps {
+                // Execute JUnit tests
+                sh 'mvn test'
+            }
+        }
+
         stage('Clean and Build with Maven') {
             steps {
                 // Nettoyage du projet avec Maven
@@ -30,11 +37,8 @@ pipeline {
             }
         }
 
-        stage('Tests et SonarQube Analysis') {
+        stage('SonarQube Analysis') {
             steps {
-                // Exécution des tests avec Maven
-                sh 'mvn test'
-
                 // Lancement de l'analyse SonarQube
                 script {
                     def scannerHome = tool 'SonarQubeScanner'
@@ -48,7 +52,7 @@ pipeline {
         stage("Publish to Nexus") {
             steps {
                 script {
-                    // Read POM xml file using 'readMavenPom' step , this step 'readMavenPom' is included in: https://plugins.jenkins.io/pipeline-utility-steps
+                    // Read POM xml file using 'readMavenPom' step, this step 'readMavenPom' is included in: https://plugins.jenkins.io/pipeline-utility-steps
                     pom = readMavenPom file: "pom.xml";
                     // Find built artifact under target folder
                     filesByGlob = findFiles(glob: "target/*.${pom.packaging}");
